@@ -1,0 +1,23 @@
+{
+  "name": "@superfleb/bump",
+  "version": "1.0.0",
+  "packageManager": "yarn@4.9.2",
+  "type": "module",
+  "bin": {
+    "bump": "dist/bump.js",
+    "tag": "dist/tag.js",
+    "bumpIfRequired": "dist/bumpIfRequired.js"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "build": "vitest run && tsc",
+    "prep": "vitest run && tsc && node ./dist/bump ."
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.3",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "typescript": "^5.8.3"
+  }
+}
