@@ -1,7 +1,7 @@
 import {execSync} from "child_process";
 import {getPackageJson, mergePackageJson} from "./packageJson.js";
 import canGit from "./canGit.js";
-import EnvironmentError from "./EnvironmentError";
+import EnvironmentError from "./EnvironmentError.js";
 
 function verifyVersionOrThrow(version?: string): string {
   if (version && !/^(\d+\.){2}\d+$/.test(version)) throw new Error("Update version must be in n.n.n Semver format");
@@ -20,5 +20,6 @@ function getVersion(packageJsonPath: string): string {
 export default function tag(packageJsonPath: string, updateVersion?: string): void {
   if (!canGit()) throw new EnvironmentError("Git is not installed");
   const version = updateVersion ? setVersion(packageJsonPath, updateVersion) : getVersion(packageJsonPath);
+  console.log(`Tagging with ${version}`);
   execSync(`git tag ${version}`);
 }
